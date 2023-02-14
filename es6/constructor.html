@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>原型对象上有一个属性叫做constructor</h1>
+  <script>
+    function Star(name, age) {
+      this.name = name;
+      this.age = age;
+    }
+    Star.prototype.sing = function () {
+      console.log(this.name + "在唱歌...");
+    }
+    const s1 = new Star("AAA", 19);
+    const s2 = new Star("BBB", 20);
+    console.log(Star.prototype, Star.prototype.constructor)
+    console.log(Star)
+    console.log("s1", s1)
+    console.log(s1.__proto__)
+    console.log(Star.prototype.constructor === Star)
+  </script>
+</body>
+
+</html>
