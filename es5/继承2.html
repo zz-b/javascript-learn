@@ -27,7 +27,7 @@
     // 利用对象修改原型对象的时候，要把原型的constructor再指向该构造函数（这里的对象就是new Feather()，就像Son.prototype={say:()=>{}}）
     Son.prototype.constructor = Son;
     Son.prototype.study = function () {
-      console.log("study");
+      console.log(`我是${this.name}，我在学习！`);
     }
     const f1 = new Feather("老王", 50);
     const s1 = new Son("小王", 20, 90);
