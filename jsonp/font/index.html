@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jsonp</title>
+</head>
+<body>
+  <script>
+    function myJsonpHander(data){
+      console.log(data)
+    }
+  </script>
+  <script src="http://127.0.0.1:8088/jsonp?cb=myJsonpHander"></script>
+  <!-- 上面这行代码就相当于 -->
+    <script>
+      const data = {
+        "name":"tom",
+        "age":19,
+        "scores":
+          [
+            {"math":100,"english":90,"java":80,"time":1},
+            {"math":89,"english":86,"java":80,"time":2},
+            {"math":96,"english":40,"java":90,"time":3}
+          ]
+      }
+       try{
+        myJsonpHander(data);
+      }catch(e){}
+    </script>
+
+</body>
+</html>
