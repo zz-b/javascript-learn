@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <label for="quota">素数个数：</label>
+  <input type="text" id="quota" name="quota" value="1000000">
+
+  <button id="generate">生成素数</button>
+  <button id="reload">重载</button>
+
+  <div id="output"></div>
+
+  <script>
+    document.querySelector('#generate').addEventListener('click', () => {
+      const quota = document.querySelector('#quota').value;
+      ajax.get("http://127.0.0.1:8081/test?quota=" + quota,(res)=>{
+        console.log(res)
+        document.querySelector('#output').textContent = `完成！已生成素数${quota}个。`;
+      })
+      
+    });
+    document.querySelector('#reload').addEventListener('click', () => {
+      document.location.reload()
+    });
+    const ajax = {
+      get:function(url, cb){
+        var xml = new XMLHttpRequest();
+        xml.open("get", url, true);
+        xml.onreadystatechange = function(){
+          if(xml.status === 200 && xml.readyState ===4){
+            cb(xml.responseText)
+          }
+        }
+        xml.send();
+      }
+    }
+  </script>
+</body>
+
+</html>
