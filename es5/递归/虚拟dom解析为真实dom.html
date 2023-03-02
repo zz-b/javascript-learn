@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>将虚拟dom转为真实dom</title>
+</head>
+<body>
+  <script>
+    // VNode
+    const VNode = {
+      tag: 'DID',
+      attrs: {
+        id: 'app',
+      },
+      children: [
+        {
+          tag: 'SPAN',
+          children: [{tag: 'A',children:[]}]
+        },
+        {
+          tag: 'SPAN',
+          children: [
+            {tag: 'A',children:[]},
+            {tag: 'A',children:[]}
+          ]
+        }
+      ]
+    }
+    function render(VNode){
+      let dom = document.createElement(VNode.tag);
+      if(VNode.attrs){
+        Object.keys(VNode.attrs).forEach(key=>{
+          dom.setAttribute(key, VNode.attrs[key]);
+        })
+      }
+      VNode.children.forEach(item=>{
+        dom.appendChild(render(item));
+      })
+      return dom;
+    }
+    document.body.appendChild(render(VNode))
+  </script>
+</body>
+</html>
