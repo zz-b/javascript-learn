@@ -21,17 +21,17 @@ class Observer{
   }
 }
 function defineReactive(data, key, value){
-  console.log("defineReactive", data, key, value)
+  // console.log("defineReactive", data, key, value)
   observer(value)//递归劫持
   Object.defineProperty(data, key, {
     get(){
-      console.log("get")
+      console.log("get", value)
       return value
     },
     set(newValue){
       observer(value);//处理设置对象问题例如把o={a:1,b:{c:1}}通过o.b={d:1}，变成了o={a:1,b:{d:1}}
-      console.log("set");
-      if(newValue===value) return;
+      console.log("set", newValue);
+      if(newValue === value) return;
       value = newValue;
     }
   })

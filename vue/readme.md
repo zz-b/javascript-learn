@@ -8,6 +8,8 @@ rollup 主要用于打包js文件，比webpack要轻量很多，rollup.config.js
 
 rollup-plugin-serve会启动一个服务器监听一个端口（类似于live-server）
 
+dist目录是执行npm run dev命令后生成的目标文件
+
 ```javascript
 
 cnpm install @babel/preset-env @babel/core rollup rollup-plugin-babel rollup-plugin-serve
