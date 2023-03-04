@@ -10,7 +10,7 @@ rollup-plugin-serve会启动一个服务器监听一个端口（类似于live-se
 
 ```javascript
 
-cnpm install @babel/preset-env @babel/core rollup rollup-plugin-babel rollup-plugin-serve -D
+cnpm install @babel/preset-env @babel/core rollup rollup-plugin-babel rollup-plugin-serve
 
 ```
 
