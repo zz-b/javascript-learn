@@ -19,7 +19,8 @@
       data:{
       },
       data:function(){
-        return{msg:'hello',name:'张三',o:{a:1, b:2}}
+        // 关于数组的劫持，是通过利用切思想重写数组原型方法，而且数组中只会劫持对象类型的数组项，不会劫持数组中的普通类型的数据
+        return{msg:'hello',list:[1, 'hello', {name:'张三',age:19}],o:{a:1, b:2}}
       },
       methods: {
         foo(){},
