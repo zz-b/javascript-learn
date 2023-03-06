@@ -1,6 +1,6 @@
 import {newArray} from './arr'
 export function observer(data){
-  console.log("observer", data)
+  // console.log("observer", data)
   // 1对象
   if(typeof data!=="object" || data===null){
     return data;
@@ -10,6 +10,11 @@ export function observer(data){
 }
 class Observer{
   constructor(value){
+    // 数组或者对象都添加一个__ob__属性，为了后面利用这个Observer的实例方法，让data中的每一个对象都添加一个__ob__属性
+    Object.defineProperty(value, "__ob__", {
+      value: this,
+      enumerable: false
+    });
     if(value instanceof Array){
       // 处理数组
       value.__proto__ = newArray
@@ -42,11 +47,11 @@ function defineReactive(data, key, value){
   observer(value)//递归劫持
   Object.defineProperty(data, key, {
     get(){
-      console.log("get", value)
+      console.log("执行了get方法，获取的属性为" + key + "获取的属性值为" + value)
       return value
     },
     set(newValue){
-      console.log("set", newValue);
+      console.log("执行了set方法，设置的属性为" + key + "设置的属性值为" + value)
       if(newValue === value) return;
       value = newValue;
       observer(value);//处理设置对象问题例如把o={a:1,b:{c:1}}通过o.b={d:1}，变成了o={a:1,b:{d:1}}
