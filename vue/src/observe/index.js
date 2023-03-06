@@ -1,13 +1,15 @@
 import {newArray} from './arr'
+
 export function observer(data){
   // console.log("observer", data)
-  // 1对象
   if(typeof data!=="object" || data===null){
     return data;
   }
+  //1对象2数组，这个Observer既监听对象，又监听数组，通过Observer实例的walk方法监听对象，通过observeArray监听数组
   return new Observer(data);
-  // 2数组
+ 
 }
+
 class Observer{
   constructor(value){
     // 数组或者对象都添加一个__ob__属性，为了后面利用这个Observer的实例方法，让data中的每一个对象都添加一个__ob__属性
@@ -23,6 +25,7 @@ class Observer{
       this.walk(value);//遍历对象
     }
   }
+
   walk(data){
     let keys = Object.keys(data);
     for(let i = 0; i < keys.length; i++){
@@ -31,6 +34,7 @@ class Observer{
       defineReactive(data, key, value);
     }
   }
+
   observeArray(data){
     for(let i = 0; i< data.length; i++){
       observer(data[i])
@@ -41,19 +45,21 @@ class Observer{
        * */ 
     }
   }
+
 }
+
 function defineReactive(data, key, value){
   // console.log("defineReactive", data, key, value)
   observer(value)//递归劫持
   Object.defineProperty(data, key, {
     get(){
-      console.log("执行了get方法，获取的属性为" + key + "获取的属性值为" + value)
+      // console.log("执行了get方法，获取的属性为" + key + "获取的属性值为" + value)
       return value
     },
     set(newValue){
       if(newValue === value) return;
       value = newValue;
-      console.log("执行了set方法，设置的属性为" + key + "设置的属性值为" + value)
+      // console.log("执行了set方法，设置的属性为" + key + "设置的属性值为" + value)
       observer(value);//处理设置对象问题例如把o={a:1,b:{c:1}}通过o.b={d:1}，变成了o={a:1,b:{d:1}}
     }
   })

@@ -11,7 +11,7 @@ let methods = [
 ]
 methods.forEach(method => {
   newArray[method] = function (...args) {
-    console.log("执行了" + method + "方法。。。");//方法劫持
+    // console.log("执行了" + method + "方法。。。");//方法劫持
     let result = oldArray[method].apply(this, args);//注意this指向调用这些方法的数组
     let inserted;//专门用来处理数组插入新的数据不能被监听到的情况
     switch (method){

@@ -16,6 +16,8 @@ cnpm install @babel/preset-env @babel/core rollup rollup-plugin-babel rollup-plu
 
 ```
 
+_________________
+
 ## 打包命令
 
 ```javascript
@@ -25,3 +27,12 @@ rollup -c -w
 -w//在index.js目录里面写的代码会实时检测更新(index.js代码一旦跟新保存后，会自动重新打包输入到dist目录)
 
 ```
+
+_________________
+
+### vue2问题总结
+
+1. vue2模板渲染顺序
+
+首先options必须又el，然后看有没有render,再看有米有templete，如果又render执行render，如果没有render，但有templete，就把templete编译为render，如果templete和render都没有，就把el编译为render
+2. vue2模板渲染顺序
