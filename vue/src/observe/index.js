@@ -51,9 +51,9 @@ function defineReactive(data, key, value){
       return value
     },
     set(newValue){
-      console.log("执行了set方法，设置的属性为" + key + "设置的属性值为" + value)
       if(newValue === value) return;
       value = newValue;
+      console.log("执行了set方法，设置的属性为" + key + "设置的属性值为" + value)
       observer(value);//处理设置对象问题例如把o={a:1,b:{c:1}}通过o.b={d:1}，变成了o={a:1,b:{d:1}}
     }
   })
