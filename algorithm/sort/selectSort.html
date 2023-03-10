@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+    var arr = [1, -1, 2, -100, 3]
+    // 每次都选出最小值
+    function selectSort(arr){
+      const array = [...arr]
+      function getMin(array){
+        let j =0;
+        let min = array[0];
+        for(let i = 0; i< array.length; i++){
+          if(array[i] < min) {
+            j = i;
+            min = array[i];
+          }
+        }
+        array.splice(j,1)
+        return min;
+      }
+      const res = [];
+      // 一定要注意这里是index < arr.length，而不是index < array.length
+      for (let index = 0; index < arr.length; index++) {
+        res.push(getMin(array))
+      }
+      return res
+    }
+    let res = selectSort(arr)
+  </script>
+</body>
+</html>

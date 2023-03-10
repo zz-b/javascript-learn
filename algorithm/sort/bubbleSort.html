@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var arr = [-1, 1.5, 0, Math.PI, 20, -100]
+    function bubbleSort(arr){
+      const array = [...arr]
+      console.log(array)
+      for(let i = 0; i < array.length; i++){
+        for (let j = 0; j < array.length - i; j++) {
+          if(array[j] > array[j+1]){
+            let temp = array[j+1];
+            array[j+1] = array[j];
+            array[j] = temp;
+          }
+        }
+      }
+      return array;
+    }
+    let res = bubbleSort(arr)
+  </script>
+</body>
+</html>
