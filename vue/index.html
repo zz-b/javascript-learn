@@ -7,8 +7,10 @@
   <title>Document</title>
 </head>
 <body>
-  <div id="app">
-    <h1>hello</h1>
+  <div id="app">hello 
+    <span class="msg span" id="msg">{{msg}}</span>
+    <h1>666</h1>
+    <h2> </h2>
   </div>
   <script src="dist/vue.js"></script>
   <script>
@@ -17,6 +19,7 @@
       el:'#app',
       props: [],
       data:{
+        msg:"hello"
       },
       data:function(){
         // 关于数组的劫持，是通过利用切思想重写数组原型方法，而且数组中只会劫持对象类型的数组项，不会劫持数组中的普通类型的数据
@@ -34,11 +37,11 @@
       }
     })
     vm.$mount("#app")
-    console.log(vm);
+    // console.log(vm);
     // 设置值的时候一定要重现执行observer方法
     vm._data.msg = "hello world!";
     vm._data.o = {c:'fff'};
-    console.log(vm._data.msg)
+    // console.log(vm._data.msg)
   </script>
 </body>
 </html>

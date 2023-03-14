@@ -1,4 +1,5 @@
 import {initState} from './initState'
+import { compileToFunction } from './compile/index';
 export function initMixin(Vue){
   Vue.prototype._init = function(options){
     console.log('init');
@@ -18,6 +19,8 @@ export function initMixin(Vue){
       if(!template){
         el = el.outerHTML;
         console.log(el)
+        // 把html构建抽象语法树ast
+        let ast = compileToFunction(el);
       }
     }
   }
