@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var arr = [1,2,[3,4,[5,6,7,[8,9]]]]
+    function flat(arr, res = []){
+      for(let i=0; i<arr.length; i++){
+        if(arr[i] instanceof Array){
+          flat(arr[i],res)
+        }else{
+          res.push(arr[i])
+        }
+      }
+      return res;
+    }
+    let res = flat(arr)
+    console.log(res)
+    
+    function flat2(arr){
+      let res = [];
+      hander(arr)
+      function hander(arr){
+        for(let i=0; i<arr.length; i++){
+          if(typeof arr[i]!="object"){
+            res.push(arr[i])
+          }else{
+            hander(arr[i])
+          }
+        }
+      }
+      return res;
+    }
+    let res2 = flat2(arr)
+    console.log(res2)
+  </script>
+</body>
+</html>
