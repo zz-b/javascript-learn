@@ -5,6 +5,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>将虚拟dom转为真实dom</title>
+  <style>
+    .color-red{
+      color: red;
+    }
+  </style>
 </head>
 <body>
   <script>
@@ -20,24 +25,36 @@
           children: [{tag: 'A',children:[]}]
         },
         {
+          tag: null,
+          text:'hello world',
+          children: []
+        },
+        {
           tag: 'SPAN',
           children: [
-            {tag: 'A',children:[]},
+            {tag: 'a',attrs:{class:"color-red"},children:[{tag:null,text:"你好"}]},
             {tag: 'A',children:[]}
           ]
         }
       ]
     }
     function render(VNode){
-      let dom = document.createElement(VNode.tag);
-      if(VNode.attrs){
-        Object.keys(VNode.attrs).forEach(key=>{
-          dom.setAttribute(key, VNode.attrs[key]);
+      let dom;
+      if(typeof VNode.tag ==="string"){
+        // 处理标签（标签不分大消息DIV和div都是可以的）
+        dom = document.createElement(VNode.tag);
+        if(VNode.attrs){
+          Object.keys(VNode.attrs).forEach(key=>{
+            dom.setAttribute(key, VNode.attrs[key]);
+          })
+        }
+        VNode.children.forEach(item=>{
+          dom.appendChild(render(item));
         })
+      }else{
+        // 处理文本
+        dom = document.createTextNode(VNode.text);
       }
-      VNode.children.forEach(item=>{
-        dom.appendChild(render(item));
-      })
       return dom;
     }
     document.body.appendChild(render(VNode))
