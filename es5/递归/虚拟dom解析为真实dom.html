@@ -12,12 +12,13 @@
   </style>
 </head>
 <body>
+  <div id="#app">test</div>
   <script>
     // VNode
     const VNode = {
       tag: 'DID',
       attrs: {
-        id: 'app',
+        id: 'my-app',
       },
       children: [
         {
@@ -57,7 +58,10 @@
       }
       return dom;
     }
-    document.body.appendChild(render(VNode))
+    let parent = document.getElementById("#app").parentNode
+    parent.insertBefore(render(VNode),document.getElementById("#app"))
+    parent.removeChild(document.getElementById("#app"))
+    // document.body.appendChild(render(VNode))
   </script>
 </body>
 </html>
