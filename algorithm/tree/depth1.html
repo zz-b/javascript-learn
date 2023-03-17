@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 通过递归实现深度优先遍历
+    let depth1 = (node, nodeList = []) => {
+      //node不能为null
+      if (node !== null) {
+        nodeList.push(node)
+        let children = node.children || []
+        //如果children.length存在
+        for (let i = 0; i < children.length; i++) {
+          //递归调用
+          depth1(children[i], nodeList)
+        }
+      }
+      return nodeList
+    }
+    // obj
+    let obj = {
+      children: [{
+        index: 0,
+        children: [{
+          index: 1,
+          children: [{
+            index: 3
+          }]
+        }]
+      }, {
+        index: 4
+      }, {
+        index: 5,
+        children: [{
+          index: 7,
+          children: [{
+            index: 8
+          }]
+        }]
+      }, {
+        index: 6
+      }]
+    }
+    let res = depth1(obj)
+    console.log(res)
+  </script>
+</body>
+
+</html>
