@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 跟root、left、right的顺序进行遍历 -->
+  <script>
+    let root = {
+      value: 1,
+      left: {
+        value: 2,
+        left: { value: 3, left: null, right: { value: 4, left: null, right: null } },
+        right: null
+      },
+      right: {
+        value: 4,
+        left: {
+          value: 5,
+          left: null,
+          right: null
+        },
+        right: {
+          value: 6,
+          left: null,
+          right: null
+        }
+      }
+    }
+    function deepRLR(root,nodeList=[]){
+      if(root === null) return
+      // 先根
+      nodeList.push(root.value);
+      // 再左子树
+      deepRLR(root.left, nodeList);
+      // 最后右子树
+      deepRLR(root.right, nodeList);
+      // 返回结果集
+      return nodeList;
+    }
+    let res = deepRLR(root);
+    console.log(res)
+
+
+    class Node{
+      constructor(value, left, right){
+        this.value = value;
+        this.left = left;
+        this.right = right;
+      }
+      
+    }
+
+  </script>
+</body>
+
+</html>
