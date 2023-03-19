@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let list = [1, 2, 3, "4" , 3];
+    Array.prototype.Find = function(callback){
+      for(let i = 0; i < this.length; i++){
+        if(callback(this[i], i)){
+          return this[i];
+        }
+      }
+    }
+    console.log(list.find(item => item > 2))
+    console.log(list.Find(item => item === "4"))
+    console.log(list.Find(item => item === 4))
+  </script>
+</body>
+</html>
