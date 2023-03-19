@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    Array.prototype.foreach = function(callback){
+      const arr = this;
+      for(let i = 0; i < arr.length; i++){
+        callback(arr[i], i);
+      }
+    }
+    function cb(item, index){
+      console.log(item, index)
+    }
+    let arr = [1, 2, 3, 4, "5", "a"];
+    arr.foreach((item, index)=>{
+      console.log(item, index)
+    })
+    console.log("===========================================")
+    arr.foreach(cb)
+  </script>
+</body>
+</html>
