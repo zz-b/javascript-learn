@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var arr = [1, 2, "3", 4];
+    Array.prototype._every = function(callback, value) {
+      for(let i = 0; i < this.length; i++){
+        let result = callback.call(value, this[i], i, this);
+        if(!result) {
+          return false;
+        }
+      }
+      return true;
+    }
+    
+    let res = arr._every(item => item === "3");
+    let res2 = arr._every(item => item >= 1);
+    console.log(res)
+    console.log(res2)
+  </script>
+</body>
+</html>

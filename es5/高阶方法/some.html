@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var arr = [1, 2, "3", 4];
+    Array.prototype._some = function(callback, value) {
+      for(let i = 0; i < this.length; i++){
+        let result = callback.call(value, this[i], i, this);
+        if(result) {
+          return true;
+        }
+      }
+      return false;
+    }
+    
+    let res = arr._some(item => item === "3");
+    let res2 = arr._some(item => item >= 2);
+    console.log(res)
+    console.log(res2)
+  </script>
+</body>
+</html>
