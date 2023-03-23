@@ -30,7 +30,7 @@
 
     let arr2 = [[0, 1], [2, 3], [4,[5,6,7]]]
     const new_arr2 = (arr) => {
-      return arr.reduce((pre, cur)=>{ pre.concat( Array.isArray(cur) ? new_arr2(cur) : cur)},[])
+      return arr.reduce((pre, cur)=>{ return pre.concat( Array.isArray(cur) ? new_arr2(cur) : cur)},[])
     }
     console.log(new_arr2(arr2))
   </script>
