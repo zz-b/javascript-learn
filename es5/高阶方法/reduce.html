@@ -1,38 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
   <script>
     let names = ['Alice', 'Bob', 'Tiff', 'Bruce', 'Alice'];
     let res = names.reduce((pre, cur) => {
-      if(cur in pre){
+      if (cur in pre) {
         pre[cur]++
-      }else{
+      } else {
         pre[cur] = 1
       }
       return pre
-    },{})
+    }, {})
     console.log(res)
-    let arr = [1,2,3,4,4,1,"1"];
-    let new_arr = arr.reduce((pre, cur)=> {
-      if(pre.includes(cur)){
+    let arr = [1, 2, 3, 4, 4, 1, "1"];
+    let new_arr = arr.reduce((pre, cur) => {
+      if (pre.includes(cur)) {
         return pre
-      }else{
+      } else {
         return pre.concat(cur)
       }
-    },[])
+    }, [])
     console.log(new_arr)
-
-    let arr2 = [[0, 1], [2, 3], [4,[5,6,7]]]
+    // 二维数组去重
+    let arr1 = [1, [2, 3], [4, 5]]
+    let res2 = arr1.reduce((pre, cur) => { return pre.concat(cur) }, []);
+    console.log(res2);
+    [].concat(1, 2, 3);//concat既可以连接普通类型数据，又可以连接数组
+    [].concat([1, 2, 3]);
+    // 多维数组去重
+    let arr2 = [[0, 1], [2, 3], [4, [5, 6, 7]]]
     const new_arr2 = (arr) => {
-      return arr.reduce((pre, cur)=>{ return pre.concat( Array.isArray(cur) ? new_arr2(cur) : cur)},[])
+      return arr.reduce((pre, cur) => { return pre.concat(Array.isArray(cur) ? new_arr2(cur) : cur) }, [])
     }
     console.log(new_arr2(arr2))
+
+    // 对象里的属性求和
+    var result = [
+      {
+        subject: 'math',
+        score: 10
+      },
+      {
+        subject: 'chinese',
+        score: 20
+      },
+      {
+        subject: 'english',
+        score: 30
+      }
+    ];
+    // let resultSum = result.reduce((pre, cur) => {return cur.score + pre}, 0)
+    let resultSum = result.reduce((pre, cur) => cur.score + pre, 0)
+    console.log(resultSum)
   </script>
 </body>
+
 </html>
