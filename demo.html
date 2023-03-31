@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>抽奖活动</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <style>
+    #result img{
+      width: 300px;
+    }
+  </style>
+</head>
+<body>
+  <h1>抽奖活动</h1>
+  <div>
+    <button id="lottery-btn">抽奖</button>
+  </div>
+  <div id="result"></div>
+  <h2>剩余奖品数量：</h2>
+  <div id="winner-counts"></div>
+  <script>
+    var winnerCounts = {};
+    $(function() {
+      // 获取奖品列表
+      $.get('http://127.0.0.1:3000/prizes', function(prizes) {
+        // 初始化中奖记录 
+        $.each(prizes, async function(i, prize) {
+          // winnerCounts[prize.name] = 0;
+          await getWinnerCounts()
+        });
+
+        // 绑定抽奖按钮点击事件
+        $('#lottery-btn').click(function() {
+          // 请求后台抽奖接口
+          $.get('http://127.0.0.1:3000/lottery', async function(result) {
+            if ($.isEmptyObject(result)) {
+              // 没有中奖
+              $('#result').text('很遗憾，您没有中奖！');
+            } else {
+              // 中奖了，显示中奖信息，并更新中奖记录
+              $('#result').html('<p>恭喜您中了 ' + result.name + '！</p><img src="' + result.image + '">');
+              // winnerCounts[result.name]++;
+              await getWinnerCounts()
+            }
+            await getWinnerCounts();
+          });
+        });
+
+        // 定时获取中奖记录并显示
+        setInterval(async function() {
+          await getWinnerCounts()
+        }, 5000);
+      });
+    });
+    function getWinnerCounts(){
+      return new Promise((resolve)=>{
+        $.get('http://127.0.0.1:3000/winner-counts', function(data) {
+          var html = '';
+          winnerCounts = data;
+          $.each(winnerCounts, function(name, count) {
+            html += '<p style="color:red">' + name + ': ' + count + '个'+'</p>';
+          });
+          $('#winner-counts').html(html);
+          resolve()
+        });
+      })
+    }
+  </script>
+</body>
+</html>
