@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 
+    浏览器在解析html的时候，遇到css标签会直接忽略继续解析html构建dom树，但遇到script标签（js）的时候必须等，等待js
+    下载完毕，并立刻执行该js，执行完后才会继续解析dom树，（在这里能够获取到wrap元素，因为执行该js的时候，dom树上已经有wrap）
+   -->
+   <!-- 浏览器主线程负责执行js、负责解析html构建dom树，负责渲染、但css树不是主线程构建的，而是由专门的预解析线程构建
+        浏览器在解析html是在主线程的进行，从上向下依次扫描html字符串，遇到dom标签就构建相应的dom对象
+        （首先会构建一个document对象），遇到css标签直接跳过（css树的构建由预解析线程构建），遇到script标签，会立即等待该js
+        下载完毕，并执行js后才会继续进行html字符串的解析和dom树的构建。
+        注意：css文件的下载、js文件的下载、css树的构建都是由预解析线程完成，也就是说，当主线程解析html的时候，遇到script标签的时候
+        该js可能早已经开始下载了，但可能还没有下载完毕，也可能下载完毕了，如果下载完毕了，就直接执行js，如果js没有下载完毕，必须等
+        待下载完毕，再执行js，反正无论怎么样，这个过程主线程都不能干其他的事情（针对js），也就是说script标签会阻塞浏览器的渲染，
+        link标签不会
+  -->
+</head>
+<body>
+  <p>hello</p>
+  <div id="wrap">你好</div>
+</body>
+<script src="./index.js"></script>
+</html>

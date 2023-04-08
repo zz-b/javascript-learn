@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 
+    浏览器在解析html的时候，遇到css标签会直接忽略继续解析html构建dom树，但遇到script标签（js）的时候必须等，等待js
+    下载完毕，并立刻执行该js，执行完后才会继续解析dom树，（在这里就获取不到wrap元素，因为执行该js的时候，dom树上还没有wrap，所以
+    获取不到）
+   -->
+  <script src="./index.js"></script>
+</head>
+<body>
+  <p>hello</p>
+  <div id="wrap">你好</div>
+</body>
+</html>
