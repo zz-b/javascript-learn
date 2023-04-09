@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{margin: 0;}
+    .ball{
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      border-radius: 50%;
+    }
+    .ball1{
+      animation: move1 1s alternate linear infinite;
+    }
+    .ball2{
+      position: relative;
+      left: 0;
+      animation: move2 1s alternate linear infinite;
+    }
+    @keyframes move1 {
+      /* transform直接用gpu加速走另外一个渲染线程，不在主线程上渲染，所以即使页面卡死，仍然不会阻止transform的渲染 */
+      to{transform: translateX(100px);}
+    }
+    @keyframes move2 {
+      to{left: 100px;}
+    }
+  </style>
+</head>
+<body>
+  <button onclick="sleep(5000)">休眠5s</button>
+  <div class="ball ball1"></div>
+  <div class="ball ball2"></div>
+  <script>
+    function sleep(time){
+      let now = Date.now();
+      while (Date.now()-now<time) {
+        
+      }
+    }
+  </script>
+</body>
+</html>
