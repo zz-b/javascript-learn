@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #wrap{
+      width: 100px;
+      height: 100px;
+      background-color: skyblue;
+    }
+  </style>
+</head>
+<body>
+  <div id="wrap"></div>
+  <button onclick="toggle()">toggle</button>
+  <script>
+    function toggle(){
+      // 浏览器只有当下面一系列同步代码执行完了以后，才会统一执行绘制命令，以节省性能，而非改一个css属性就会立刻重新绘制
+      // 浏览器会等到主线程任务队列空了以后才会执行绘制任务
+      let wrap = document.getElementById("wrap");
+      wrap.style.width = "200px";
+      wrap.style.height = "200px";
+      wrap.style.backgroundColor = "red";
+      // console.log(wrap.clientWidth)
+      console.log(wrap.style.width)
+      // alert(wrap.clientWidth)
+      // sleep(2000)
+    }
+    function sleep(time){
+      let now = Date.now();
+      while (Date.now()-now<time) {
+
+      }
+    }
+  </script>
+</body>
+</html>
