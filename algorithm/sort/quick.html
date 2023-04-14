@@ -34,6 +34,30 @@
       }
       return arr;
     }
+    const testArrFn = function (len) {
+      let arr = []
+      const count = len
+      for (let i = 0; i < count; i++) {
+        arr[i] = Math.floor(Math.random() * 50 + 1)
+      }
+      return arr
+    }
+    let testArr = testArrFn(len)
+
+    let len = testArr.length
+    /**
+     * @desc 方法函数执行的时间
+     */
+    module.exports = async function getFnRunTime(fn) {
+      let startTime = Date.now(),
+        endTime
+      let result = await fn(testArr)
+      endTime = Date.now()
+      console.log(testArr, result)
+      console.log("test_array'length: " + len, result.length, `排序耗时-total time: ${endTime - startTime}ms, `)
+    }
+    // 引入上面的 统计代码耗时的方法: 进行测试快速排序对处理20000+条数据的排序耗时:
+    getFnRunTime(quickSort)
   </script>
 </body>
 
