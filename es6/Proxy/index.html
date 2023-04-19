@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const handler = {
+      get: function (obj, prop) {
+        return prop in obj ? obj[prop] : 37;
+      }
+    };
+
+    const p = new Proxy({}, handler);
+    p.a = 1;
+    p.b = undefined;
+
+    console.log(p.a, p.b);      // 1, undefined
+    console.log('c' in p, p.c); // false, 37
+    let target = {};
+    let p1 = new Proxy(target, {});
+
+    p1.a = 37;   // 操作转发到目标
+
+    console.log(target.a);    // 37. 操作已经被正确地转发
+
+
+  </script>
+</body>
+
+</html>
