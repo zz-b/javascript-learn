@@ -17,6 +17,12 @@
     var o2 = Object._create(o1);
     console.log(o2);
     o2.a = "aa";
+    // for in 和Object.keys()的区别：
+    // for in 会遍历出来继承的可枚举属性，Object.keys()只会遍历出自身的属性，不会涉及到继承属性
+    for(let k in o2){
+      console.log("for-in遍历o2的属性：", k);//for-in会遍历出b属性
+    }
+    console.log("Object.keys遍历o2的属性：", Object.keys(o2))
   </script>
 </body>
 </html>
