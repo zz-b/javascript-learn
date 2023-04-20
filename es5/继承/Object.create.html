@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    Object._create = function(o){
+      var F = function(){};
+      F.prototype = o;
+      return new F();
+    }
+    var o1 = {a:1, b:2};
+    var o2 = Object._create(o1);
+    console.log(o2);
+    o2.a = "aa";
+  </script>
+</body>
+</html>
