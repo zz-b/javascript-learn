@@ -5,6 +5,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    p{margin: 0;}
+    br{height: 0;}
+  </style>
 </head>
 <body>
   <script>
@@ -20,14 +24,17 @@
     o2.foo = function(){};
     // for in 和Object.keys()的区别：
     // for in 会遍历出来继承的可枚举属性，Object.keys()只会遍历出自身的属性，不会涉及到继承属性
+    document.writeln("<p style='color:red'>对象o2全部可遍历的属性:"+"<p>")
     for(let k in o2){
+      document.writeln("属性"+ k + ",属性值：" + o2[k]+";"+"<br>");
       console.log("for-in遍历o2的属性：", k);//for-in会遍历出b属性
     }
+    document.writeln("----------------------------------------")
     console.log("----------------------------------------");
     console.log("Object.keys遍历o2的属性：", Object.keys(o2));
     console.log("----------------------------------------");
     // 如何避免for-in遍历受到的继承属性影响
-    document.writeln("对象o2:"+"<br>")
+    document.writeln("<p style='color:red'>对象o2自身的属性:"+"<p>")
     for(let k in o2){
       if(o2.hasOwnProperty(k)){
         document.writeln("属性"+ k + ",属性值：" + o2[k]+";"+"<br>");
