@@ -22,7 +22,16 @@
     for(let k in o2){
       console.log("for-in遍历o2的属性：", k);//for-in会遍历出b属性
     }
-    console.log("Object.keys遍历o2的属性：", Object.keys(o2))
+    console.log("----------------------------------------");
+    console.log("Object.keys遍历o2的属性：", Object.keys(o2));
+    console.log("----------------------------------------");
+    // 如何避免for-in遍历受到的继承属性影响
+    for(let k in o2){
+      if(o2.hasOwnProperty(k)){
+        console.log(k);//hasOwnProperty可以用来排除继承属性
+      }
+    
+    }
   </script>
 </body>
 </html>
