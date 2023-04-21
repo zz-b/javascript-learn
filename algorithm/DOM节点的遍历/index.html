@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="div-1">div-1</div>
+  <div class="div-2">
+    div-2
+    <span>hello</span>
+    <span class="red">world</span>
+  </div>
+  <script>
+    var body = document.body;
+    var Traverse1 = function trave(node, handNodeFn){
+      handNodeFn(node);//处理节点
+      node = node.firstElementChild;//处理完当前节点后，让指针指向当前节点的第一个字节点
+      while (node) {
+        // 如果存在子节点就进入while循环
+        trave(node, handNodeFn);
+        node = node.nextElementSibling;//node.nextElementSibling当前节点node的下一个兄弟节点
+      }
+    }
+    Traverse1(body, function(node){
+      if(node.nodeName!=="SCRIPT"){
+        console.log(node)
+      }
+    })
+  </script>
+</body>
+</html>
