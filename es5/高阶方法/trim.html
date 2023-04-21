@@ -10,6 +10,8 @@
   <script>
     String.prototype._trim = function(){
       return this.replace(/^\s+|\s+$/g,"");//这个g必须写，否则只会匹配左边的空格，不会匹配右边的空格
+      // 或者写为
+      return this.replace(/^\s+/,"").replace(/\s+$/,"")
     }
   </script>
 </body>
