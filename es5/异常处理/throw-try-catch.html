@@ -18,7 +18,17 @@
       console.log("throw会阻止后面代码继续运行。")
       return a + b;
     }
-    add("1", 2)
+    // add("1", 2);
+    var tryAdd = function(){
+      try {
+        add("1", 2);
+      } catch (error) {
+        console.log(error)
+      }
+      // try-catch会捕获上面throw抛出的错误，避免发生错误后导致的后续代码不再继续执行
+      console.log("try-catch会捕获上面throw抛出的错误，避免发生错误后导致的后续代码不再继续执行。")
+    }
+    tryAdd();
   </script>
 </body>
 </html>
