@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .red{color: red;}
+    body{margin: 0;}
+  </style>
+</head>
+<body>
+  <div tag="div" class="red">div-1</div>
+  <div tag="div">
+    div-2
+    <span tag="span1">hello</span>
+    <span class="red" tag="span1">world</span>
+  </div>
+  <script>
+    var body = document.body;
+    // 遍历dom节点的方法
+    var Traverse = function trave(node, handNodeFn){
+      handNodeFn(node);//处理节点
+      node = node.firstElementChild;//处理完当前节点后，让指针指向当前节点的第一个字节点
+      while (node) {
+        // 如果存在子节点就进入while循环
+        trave(node, handNodeFn);
+        node = node.nextElementSibling;//node.nextElementSibling当前节点node的下一个兄弟节点
+      }
+    }
+
+    // 根据指定属性和属性值获取dom节点集合
+    var getElementByAttr = function(attr, value){
+      var result = [];
+      Traverse(body, function(node){
+        if(node && node.getAttribute(attr) === value){
+          result.push(node);
+        }
+      })
+      return result;
+    } 
+    // 获取属性名tag，同时属性值为div的dom节点集合
+    let tagDiv = getElementByAttr("tag", "div");
+    console.log(tagDiv);
+
+    let tagSpan1 = getElementByAttr("tag", "span1");
+    console.log(tagSpan1);
+
+    // 获取所有class属性值为red的dom
+    let tagClass = getElementByAttr("class", "red");
+    console.log(tagClass);
+
+
+    Traverse(body, function(node){
+      if(node.nodeName!=="SCRIPT"){
+        console.log(node)
+      }
+    })
+  </script>
+</body>
+</html>
