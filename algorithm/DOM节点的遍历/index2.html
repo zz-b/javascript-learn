@@ -49,6 +49,7 @@
 
     // 获取所有class属性值为red的dom
     let tagClass = getElementByAttr("class", "red");
+    document.writeln("所有class属性值为red的dom为" + tagClass.map(item=>item.nodeName.toLocaleLowerCase()))
     console.log(tagClass);
 
 
