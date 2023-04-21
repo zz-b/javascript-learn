@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var add = function(a, b){
+      if(typeof a != "number" || typeof b != "number"){
+        throw {
+          name: "TypeError",
+          message: "add needs numbers."
+        }
+      }
+      console.log("throw会阻止后面代码继续运行。")
+      return a + b;
+    }
+    add("1", 2)
+  </script>
+</body>
+</html>
