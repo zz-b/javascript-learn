@@ -15,7 +15,7 @@
           message: "add needs numbers."
         }
       }
-      console.log("throw会阻止后面代码继续运行。")
+      console.log("throw会阻止后面代码继续运行。");
       return a + b;
     }
     // add("1", 2);
@@ -23,10 +23,11 @@
       try {
         add("1", 2);
       } catch (error) {
-        console.log(error)
+        document.write(error.name + ":" + error.message);
+        console.log(error);
       }
       // try-catch会捕获上面throw抛出的错误，避免发生错误后导致的后续代码不再继续执行
-      console.log("try-catch会捕获上面throw抛出的错误，避免发生错误后导致的后续代码不再继续执行。")
+      console.log("try-catch会捕获上面throw抛出的错误，避免发生错误后导致的后续代码不再继续执行。");
     }
     tryAdd();
   </script>
