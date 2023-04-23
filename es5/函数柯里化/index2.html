@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function add(){
+      var result = 0;
+      for(var i = 0; i < arguments.length; i++){
+        result += arguments[i];
+      }
+      return result;
+    }
+    
+    function currying(fn){
+      var args = [];
+      return function helper(){
+        if(arguments.length === 0){
+          // return fn(...args);
+          var result = fn.apply(args,args);
+          args = [];
+          return result;
+        }else{
+          [].push.apply(args, arguments);
+          return helper;
+        }
+      }
+    }
+    const curryingAdd = currying(add);
+    console.log(curryingAdd());
+    console.log(curryingAdd(1)(2)(3)());
+    console.log(curryingAdd(1)(2, 3)(4)());
+    console.log(curryingAdd(1, 2, 3)(4, 5)(6, 7, 8)());
+  </script>
+</body>
+</html>
