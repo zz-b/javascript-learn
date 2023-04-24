@@ -10,12 +10,14 @@
   <script>
     // 利用缓存来处理求值问题
     var factorial = function (){
-      var result = [1, 1];//0和1的阶乘都是1
+      var memo = [1, 1];//0和1的阶乘都是1
       var helper = function(n){
-        if(typeof result[n] !== "number"){
-          result[n] = helper(n-1) * n;
+        var result = memo[n];
+        if(typeof result !== "number"){
+          result = helper(n-1) * n;
+          memo[n] = result;
         }
-        return result[n]
+        return result
       }
       return helper;
     }
