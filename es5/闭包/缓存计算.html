@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 利用缓存来处理求值问题
+    var factorial = function (){
+      var result = [1, 1];//0和1的阶乘都是1
+      var helper = function(n){
+        if(typeof result[n] !== "number"){
+          result[n] = helper(n-1) * n;
+        }
+        return result[n]
+      }
+      return helper;
+    }
+    var cacFactorial= factorial();
+    // cacFactorial(1);
+    cacFactorial(2);
+    // cacFactorial(3);
+    // cacFactorial(4);
+  </script>
+</body>
+</html>
