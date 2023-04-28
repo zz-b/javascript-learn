@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var memoizer = function(memo, formula){
+      var recur = function(n){
+        var result = memo[n];
+        if(typeof result !== "number"){
+          result = formula(n, recur);
+          memo[n] = result;
+        }
+        return result;
+      }
+      return recur;
+    }
+    var factorial = memoizer([1, 1],function(n, recur){return n * recur(n-1)});
+    document.writeln("5的阶乘为:", factorial(5));
+    document.writeln("<br>");
+    document.writeln("6的阶乘为:", factorial(6));
+    document.writeln("<br>");
+    var fib = memoizer([1, 1],function(n, recur){return recur(n-1) + recur(n-2)});
+    document.writeln("斐波那契数列的第2项为:", fib(2));
+    document.writeln("<br>");
+    document.writeln("斐波那契数列的第3项为:", fib(3));
+    document.writeln("<br>");
+    document.writeln("斐波那契数列的第4项为:", fib(4));
+    document.writeln("<br>");
+    document.writeln("斐波那契数列的第4项为:", fib(5));
+
+    
+  </script>
+</body>
+</html>
