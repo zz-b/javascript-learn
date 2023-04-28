@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var arr = [1, 2, 3, 4, 5];
+    arr.total = function(){
+      return arr.reduce((a, b) => a + b,0)
+    }
+    document.write(arr.total(),"<br>");
+    var prop = "10";
+    arr[prop] = 7;
+    document.write("数组arr为：",arr,"<br>")
+    document.write("数组arr的length属性值为：",arr.length,"<br>")
+    document.write("数组arr的每一项为：","<br>")
+    for(var value of arr){
+      document.write(value,"<br>")
+    }
+  </script>
+</body>
+</html>
