@@ -5,8 +5,19 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    body{
+      --bgc:skyblue;
+      margin: 0;
+      text-align: center;
+    }
+    h1{
+      background-color: var(--bgc);
+    }
+  </style>
 </head>
 <body>
+  <h1>JavaScript的中的reduce方法！</h1>
   <script>
     var arr = [1, 2, 3, 4, 5];
     arr.total = function(){
@@ -21,6 +32,16 @@
     for(var value of arr){
       document.write(value,"<br>")
     }
+    // myReduce
+    Array.prototype.myReduce = function(fn, initial){
+      for (let index = 0; index < this.length; index++) {
+        const element = this[index];
+        initial = fn(element, initial);
+      }
+      return initial;
+    }
+    var arr2 = [1, 2, 3, 4, 5];
+    document.write("数组"+arr2+"的和为：",arr2.myReduce((a, b) => a + b,0),"<br>")
   </script>
 </body>
 </html>
