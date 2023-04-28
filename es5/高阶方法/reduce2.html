@@ -21,12 +21,12 @@
   <script>
     var arr = [1, 2, 3, 4, 5];
     arr.total = function(){
-      return arr.reduce((a, b) => a + b,0)
+      return arr.reduce((a, b) => a + b, 0)
     }
     document.write(arr.total(),"<br>");
     var prop = "10";
     arr[prop] = 7;
-    document.write("数组arr为：",arr,"<br>")
+    document.write("数组arr为：[",arr,"]<br>")
     document.write("数组arr的length属性值为：",arr.length,"<br>")
     document.write("数组arr的每一项为：","<br>")
     for(var value of arr){
@@ -41,7 +41,29 @@
       return initial;
     }
     var arr2 = [1, 2, 3, 4, 5];
-    document.write("数组"+arr2+"的和为：",arr2.myReduce((a, b) => a + b,0),"<br>")
+    document.write("数组["+arr2+"]的和为：",arr2.myReduce((a, b) => a + b,0),"<br>")
+    // myReduce2
+    Array.prototype.myReduce2 = function(fn, initial){
+      if(this.length === 0) {
+        throw("caught TypeError: Reduce of empty array with no initial value")
+      }
+      let _index = initial ? 0 : 1;
+      initial = initial ? initial : this[0];
+      for (let index = _index; index < this.length; index++) {
+        const element = this[index];
+        initial = fn(element, initial);
+      }
+      return initial;
+    }
+    document.write("数组["+[1]+"]的和为：",[1].myReduce2((a, b) => a + b,0),"<br>")
+    document.write("数组["+[1]+"]的和为：",[1].myReduce2((a, b) => a + b),"<br>")
+    document.write("数组["+arr2+"]的和为：",arr2.myReduce2((a, b) => a + b,0),"<br>")
+    try {
+      document.write("数组["+[]+"]的和为：",[].myReduce2((a, b) => a + b,0),"<br>")
+    } catch (error) {
+      document.write(`<p style="color:red">${error}</p>`)
+    }
+    document.write("数组["+arr2+"]的和为：",arr2.myReduce2((a, b) => a + b),"<br>")
   </script>
 </body>
 </html>
