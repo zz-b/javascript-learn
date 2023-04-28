@@ -44,6 +44,7 @@
     document.write("数组["+arr2+"]的和为：",arr2.myReduce((a, b) => a + b,0),"<br>")
     // myReduce2
     Array.prototype.myReduce2 = function(fn, initial){
+      // 抛出错误
       if(this.length === 0) {
         throw("caught TypeError: Reduce of empty array with no initial value")
       }
@@ -58,11 +59,13 @@
     document.write("数组["+[1]+"]的和为：",[1].myReduce2((a, b) => a + b,0),"<br>")
     document.write("数组["+[1]+"]的和为：",[1].myReduce2((a, b) => a + b),"<br>")
     document.write("数组["+arr2+"]的和为：",arr2.myReduce2((a, b) => a + b,0),"<br>")
+    // 错误捕获
     try {
       document.write("数组["+[]+"]的和为：",[].myReduce2((a, b) => a + b,0),"<br>")
     } catch (error) {
       document.write(`<p style="color:red">${error}</p>`)
     }
+    // 错误被捕获后，发生错误的代码后面的代码仍然可以继续执行，如果没有捕获错误的话，会导致发生错误的代码后面的代码不会执行
     document.write("数组["+arr2+"]的和为：",arr2.myReduce2((a, b) => a + b),"<br>")
   </script>
 </body>
