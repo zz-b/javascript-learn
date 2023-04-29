@@ -8,11 +8,21 @@
 </head>
 <body>
   <script>
-    var f = function(){
-      document.write(this.value,"<br>");
+    var f = function(x){
+      document.write("传递的参数x为：", x, "<br>");
+      document.write("this.value的值为：",this.value,"<br>");
     }
-    f();//普通调用
-    f.bind({value:666})();//通过bind绑定函数内部this后再调用
+    f(3);//普通调用
+    f.bind({value:666})(2);//通过bind绑定函数内部this后再调用
+    // 通过闭包实现切片思想，来手动实现bind方法
+    Function.prototype.myBind = function(){
+      var method = this;//这里的this即为调用bind方法的那个函数（原始函数）
+      var args = [...arguments];//这里的arguments为给myBind函数传递的参数（也就是要绑定的对象）
+      return function(){
+        return method.apply(args[0],arguments);//这里的arguments为给原函数f传递的参数（x）
+      }
+    }
+    f.myBind({value:"张三"})(19)
   </script>
 </body>
 </html>
