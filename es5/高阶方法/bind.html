@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var f = function(){
+      document.write(this.value,"<br>");
+    }
+    f();//普通调用
+    f.bind({value:666})();//通过bind绑定函数内部this后再调用
+  </script>
+</body>
+</html>
