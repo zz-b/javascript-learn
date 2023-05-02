@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 这一种方式来实现单例模式的弊端是会在instance是公开的
+    function Universe(){
+      if(typeof Universe.instance === "object"){
+        return Universe.instance;
+      }
+      this.start_time = 0;
+      this.bang = "Big";
+      Universe.instance = this;
+      // return this;//这一行代码可以执行，也可以不执行。
+    }
+    var uni = new Universe();
+    var uni2 = new Universe();
+    document.write(uni === uni2, "<br>");
+    var object = uni;
+    for (const key in object) {
+      if (Object.hasOwnProperty.call(object, key)) {
+        const element = object[key];
+        document.write(key, ":", element, "<br>")
+      }
+    }
+  </script>
+</body>
+</html>
