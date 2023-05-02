@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var Universe = function(){
+      var instance = this;
+      this.bang = "Big";
+      this.start_time = 0;
+      Universe = function(){
+        return instance;
+      }
+    }
+    var uni = new Universe();
+    var uni2 = new Universe();
+    var uni3 = new Universe();
+    document.write(uni === uni2,"<br>");
+    document.write(uni ===uni3,"<br>");
+    var object = uni;
+    for (const key in object) {
+      if (Object.hasOwnProperty.call(object, key)) {
+        const element = object[key];
+        document.write(key,":",element,"<br>")
+      }
+    }
+  </script>
+</body>
+</html>
