@@ -16,6 +16,8 @@
         return instance;
       }
     }
+    // 第一次执行Universe构造函数会正常进行内部代码的执行初始化实例，第二次、第三次、及以后再次执行的Universe构造函数
+    // 就会直接返回第一次的实例，因为函数内部把Universe改了。
     var uni = new Universe();
     var uni2 = new Universe();
     var uni3 = new Universe();
