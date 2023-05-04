@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    Array.prototype.myreduce = function(fn, initial){
+      var result,
+          i,
+          length = this.length;
+      if(initial){
+        result = initial;
+        i = 0;
+      }else{
+        result = this[0];
+        i = 1;
+      }
+      for (let index = i; index < length; index++) {
+        const element = this[index];
+        result = fn(result, element);
+      }
+      return result;
+    }
+    var result = [1, 2, 3, 4, 5].myreduce((a,b)=>a+b,0);
+    console.log(result)
+  </script>
+</body>
+</html>
