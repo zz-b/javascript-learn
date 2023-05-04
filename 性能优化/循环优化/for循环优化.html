@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="test wrap-1">1</div>
+  <div class="test wrap-2">2</div>
+  <div class="test wrap-3">3</div>
+  <div class="test wrap-4">4</div>
+  <div class="test wrap-5">5</div>
+  <div class="test wrap-6">6</div>
+  <script>
+    var domsCollection = document.getElementsByClassName("test");
+    // 第一种循环模式，该种模式性能较差，因为每一次循环都会访问集合长度属性，dom集合的length属性方法是很消耗性能的。
+    for (let index = 0; index < domsCollection.length; index++) {
+      const element = domsCollection[index];
+      console.log(element)
+      document.write(element, element.nodeType, element.nodeName, element.innerHTML, "<br>")
+    }
+    document.write("========================","<br>")
+    // 第二种循环模式，该种模式性能较好，因为dom集合的length属性被保存了下来只会被访问一次
+    for (let index = 0, length = domsCollection.length; index < length; index++) {
+      const element = domsCollection[index];
+      document.write(element.classList, "<br>")
+    }
+  </script>
+</body>
+</html>
