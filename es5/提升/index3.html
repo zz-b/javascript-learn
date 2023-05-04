@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // index.html代码等同于以下代码
+    myName = 'global';
+    function func() {
+      var myName;//等同于var myName = undefined;
+      document.write(myName, "<br>");
+      myName = 'local';
+      document.write(myName, "<br>");
+    }
+
+    /**
+     *  function func() {
+          var myName = undefined;
+          document.write(myName, "<br>");
+          myName = 'local';
+          document.write(myName, "<br>");
+        }
+     * 
+     * */ 
+   
+    func();
+  </script>
+</body>
+</html>
