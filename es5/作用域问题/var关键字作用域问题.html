@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var array = ['h', 'e', 'l', 'l', 'o', 'w', 'o', 'r', 'l', 'd'];
+    for (var index = 0; index < array.length; index++) {
+      const element = array[index];
+      // console.log(element)
+      document.write("index[", index ,"] : ", element, "<br>");
+    }
+   document.write("例如var定义的for循环中，index最终值为：", index, "<br>")
+   document.write("==========================","<br>")
+   for (let index2 = 0; index2 < array.length; index2++) {
+      const element = array[index2];
+      // console.log(element)
+      document.write("index[", index2 ,"] : ", element, "<br>");
+    }
+    try {
+      document.write("例如var定义的for循环中，index最终值为：", index2, "<br>")
+    } catch (error) {
+      document.write(error, "<br>")
+    }
+   
+  </script>
+</body>
+</html>

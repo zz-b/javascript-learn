@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+   function func(name){
+    var myName = name;
+   }
+   func("李四");
+   document.write("myName:",typeof myName, "<br>")
+   document.write("===================", "<br>")
+   function func2(name){
+    // 未定义而直接赋值的变量会直接挂载在window对象上，当作window对象的一个属性，可以用delete删除
+    myName2 = name;
+    
+   }
+   func2("张三");
+   document.write("myName2:",myName2, "<br>")
+   delete myName2;
+   document.write("用delete删除后的myName2:",typeof myName2, "<br>")
+   // 用关键字var定义的全局变量也会当作window对象的一个属性，但不可以可以用delete删除
+   var myName3 = "王五";
+   delete myName3;//无法删除
+   document.write("myName3:", window.myName3, "<br>")
+   
+  </script>
+</body>
+</html>
