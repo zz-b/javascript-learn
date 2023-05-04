@@ -10,13 +10,17 @@
   <script>
     var _new = function () {
       var Fn = Array.prototype.shift.apply(arguments);
-      var o = {};
+      // var o = {};
+      var o = Object.create(Fn.prototype)
       var result = Fn.apply(o, arguments)
       return typeof result === "object" ? result : o;
     }
     function Dog(name, age){
       this.name = name;
       this.age = age;
+    }
+    Dog.prototype.say = function(){
+      return this.name;
     }
     var d1 = _new(Dog, "旺旺", 3);
     console.log(d1)
