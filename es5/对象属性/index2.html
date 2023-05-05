@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var book = {
+      _year: 2023,
+      version: 1
+    };
+    Object.defineProperty(book, "year" , {
+      get:function(){
+        return this._year;
+      },
+      set:function(value){
+        if(value > this.version){
+          this.version = value - this._year + this.version;
+          this._year = value;
+        }
+      }
+    })
+    console.log(book)
+    console.log(Object.keys(book))
+
+    var book2 = {
+      _year: 2023,
+      version: 1
+    };
+    // 只有加了enumerable:true才能通过Object.keys或者for-in遍历到该属性
+    Object.defineProperty(book2, "year" , {
+      enumerable:true,
+      get:function(){
+        return this._year;
+      },
+      set:function(value){
+        if(value > this.version){
+          this.version = value - this._year + this.version;
+          this._year = value;
+        }
+      }
+    })
+    console.log(book2)
+    console.log(Object.keys(book2))
+  </script>
+</body>
+</html>
