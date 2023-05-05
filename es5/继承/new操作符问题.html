@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var Waffle = function Waffle(){
+      if(!(this instanceof Waffle)){
+        return new Waffle();
+      }
+      this.tastes = "yummy";
+    }
+    Waffle.prototype.getTastes = function(){
+      return this.tastes;
+    }
+    // 避免构造函数忘记使用new关键字带来的问题。
+    var waffle = new Waffle();
+    var waffle2 = Waffle();
+    console.log(waffle);
+    console.log(waffle2);
+    console.log(waffle2.tastes);
+    console.log(waffle2.getTastes())
+  </script>
+</body>
+</html>
