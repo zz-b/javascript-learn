@@ -9,6 +9,7 @@
 <body>
   <script>
     var Waffle = function Waffle(){
+      // 如果忘记使用new关键字来调用构造函数，就强行使用new来调用构造函数，这样就避免了忘记使用new关键字来调用构造函数而带来的问题
       if(!(this instanceof Waffle)){
         return new Waffle();
       }
