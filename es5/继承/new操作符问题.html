@@ -19,6 +19,10 @@
       if(!(this instanceof Waffle)){
         return new Waffle();
       }
+      // 也可以用下面这几行代码代替上面的实例检测，这样可以避免硬编码
+      // if(!(this instanceof arguments.callee)){
+      //   return new arguments.callee();//arguments.callee指向构造函数，这样可以避免硬编码
+      // }
       this.tastes = "yummy";
     }
     Waffle.prototype.getTastes = function(){
