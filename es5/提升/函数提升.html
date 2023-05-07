@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function bar(){
+      alert("global bar");
+    }
+    function foo(){
+      alert("global foo");
+    }
+    function hoistMe(){
+      console.log("typeof bar" ,typeof bar);
+      console.log("typeof foo" ,typeof foo);
+      console.log("bar:", bar)
+      console.log("foo:", foo);
+      bar();
+      // foo();
+      function bar(){
+        alert("local bar");
+      }
+      // 这种定义的函数申明会提升，但函数体的定义不会被提升
+      var foo = function (){
+        alert("local foo");
+      } 
+    }
+    hoistMe();
+  </script>
+</body>
+</html>
