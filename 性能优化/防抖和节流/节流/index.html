@@ -5,8 +5,42 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    .drag{
+      width: 100px;
+      height: 100px;
+      background-color: skyblue;
+    }
+  </style>
 </head>
 <body>
-  
+  <div class="drag" draggable ="true">hello</div>
+  <script>
+    var drag = document.querySelector(".drag");
+    drag.addEventListener("drag",(e)=>{
+      console.log(e)
+    })
+
+    function fn(e){
+      // console.log(this);
+      console.log(e.target)
+    }
+    // drag.addEventListener("drag", throttle(fn, 300))
+
+    // 节流函数
+    function throttle(fn, delay){
+      var timer = null;
+      function cb(){
+        var that = this;
+        var args = arguments;
+        if(timer) return;
+        timer = setTimeout(function(){
+          fn.apply(that, args);
+          timer = null;
+        }, delay)
+      }
+      return cb;
+    }
+  </script>
 </body>
 </html>
