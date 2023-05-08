@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    label{
+      vertical-align: middle;
+    }
+    #input{
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <label for="input">输入：</label>
+    <input type="text" id="input">
+  </div>
+ 
+  <script>
+    const input = document.getElementById("input");
+    // input.addEventListener("keyup",function(e){
+    //   console.log(e.target.value)
+    // })
+
+    function cb(e){
+      console.log(this)
+      console.log(e.target.value)
+    }
+    // input.addEventListener("keyup",cb)
+
+    input.addEventListener("keyup", debounce(cb, 500))
+    function debounce(fn, delay){
+      var timer = null;
+      var cb = function cb(){
+        var that = this;
+        var args = arguments;
+        if(timer) clearTimeout(timer);
+        timer = setTimeout(function(){
+          fn.apply(that, args)
+        }, delay)
+      }
+      return cb;
+    }
+  </script>
+</body>
+</html>
