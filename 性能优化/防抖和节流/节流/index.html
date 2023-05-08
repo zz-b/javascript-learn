@@ -17,15 +17,15 @@
   <div class="drag" draggable ="true">hello</div>
   <script>
     var drag = document.querySelector(".drag");
-    drag.addEventListener("drag",(e)=>{
-      console.log(e)
-    })
+    // drag.addEventListener("drag",(e)=>{
+    //   console.log(e)
+    // })
 
     function fn(e){
       // console.log(this);
       console.log(e.target)
     }
-    // drag.addEventListener("drag", throttle(fn, 300))
+    drag.addEventListener("drag", throttle(fn, 300))
 
     // 节流函数
     function throttle(fn, delay){
