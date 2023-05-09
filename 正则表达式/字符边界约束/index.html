@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 验证输入的姓名 -->
+  <script>
+    var value = prompt("请输入姓名:(以小写字母开头，以小写字母结尾，长度为5到8位)");
+    while (!/^[a-z]\w{3,6}[a-z]$/.test(value)) {
+      value = prompt("请输入姓名:(以小写字母开头，长度为5到8位)");
+    }
+    var p = document.createElement("p");
+    p.innerText = "你输入的姓名为:" + value;
+    document.body.appendChild(p);
+  </script>
+</body>
+</html>

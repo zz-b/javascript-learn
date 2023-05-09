@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var string = "14fsda64adabc..fwer3abc---";
+    var string2 = "14fsda64adafbcc..fwer3abc---";
+    var string3 = "abcabc";
+    var reg = /(abc).+(abc)/;
+    var reg3 = /(abc).+(abc)/g;
+    var reg2 = /(abc).*(abc)/;
+ 
+    console.log(reg.test(string));
+    console.log(reg.test(string2))
+    console.log(reg.test(string3))
+    console.log(reg2.test(string3))
+    console.log(string.match(reg))
+    console.log(string.match(reg3))
+  </script>
+</body>
+</html>
