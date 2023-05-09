@@ -2,7 +2,7 @@ const PENDING = 'pending';
 const FULFILLED = "fulfilled";
 const REJECTED = "rejected";
 class MyPromise {
-  #state = REJECTED;
+  #state = PENDING;
   #result = undefined;
   constructor(exector){
     const resove = (data) =>{
