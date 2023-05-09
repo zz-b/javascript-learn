@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var string = `
+      zhsangsdafa1234《法撒旦&<span color="red"
+      >
+        你好啊,hello  
+      </span>dsfasdf
+      asdfasdfsad
+    `
+    var spanMatched = string.match(/<span.+>[\d\D]+<\/span>/s)
+    console.log(spanMatched);
+    console.log(spanMatched[0]);
+  </script>
+</body>
+</html>

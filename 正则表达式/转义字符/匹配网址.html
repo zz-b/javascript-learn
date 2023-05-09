@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var url = "https://www.baidu.com";
+    var url2 = "http://www.baidu.com";
+    var url3 = "https://www.devtest.cn";
+    var reg = /https?:\/\/w+\.\w+\.\w+/;
+    console.log(reg.test(url))
+    console.log(reg.test(url2))
+    console.log(reg.test(url3))
+  </script>
+</body>
+</html>

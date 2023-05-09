@@ -19,6 +19,6 @@ interface Iperson{
 function showMsg(person:Iperson) : string{
   return person.age + person.name + person.msg;
 }
-const p = new Person("张三", 19)
-console.log(p)
-console.log(showMsg(p));
+const person = new Person("张三", 19)
+console.log(person)
+console.log(showMsg(person));
