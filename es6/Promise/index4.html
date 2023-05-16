@@ -30,7 +30,19 @@
               let x = onFulFilled(this.result);
               // console.log(this.result,"aa")
               if (x instanceof Promise1) {
-                x.then(resolve, reject)
+                // 下面三种写法都可以
+                // x.then(resolve, reject)
+                // x.then((value)=>{
+                //   resolve(value)              
+                // },(reason)=>{
+                //   reject(reason)
+                // })
+                // 切片思想
+                x.then(()=>{
+                  resolve(x.result)              
+                },()=>{
+                  reject(x.reason)
+                })
               } else {
                 resolve(x)
               }
