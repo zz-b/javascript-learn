@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const PENDING = 'pending';
+    const FULFILLED = "fulfilled";
+    const REJECTED = "rejected";
+    class Promise1 {
+      constructor(exector) {
+        this.state = PENDING;
+        this.result = undefined;
+        this.reason = undefined;
+        this.onFulFilledCallBacks = [];
+        this.onRejectedCallBacks = [];
+
+        let resolve = (result) => {
+          if (this.state === PENDING) {
+            this.state = FULFILLED;
+            this.result = result;
+            // console.log(this)
+            this.onFulFilledCallBacks.forEach(({ onFulFilled, resolve, reject }) => {
+              let x = onFulFilled(this.result);
+              // console.log(this.result,"aa")
+              if (x instanceof Promise1) {
+                x.then(resolve, reject)
+              } else {
+                resolve(x)
+              }
+            })
+          }
+        };
+
+        let reject = (reason) => {
+          if (this.state === PENDING) {
+            this.state = REJECTED;
+            this.reason = reason;
+            this.onRejectedCallBacks.forEach(({ onRejected, resolve, reject }) => {
+              onRejected(this.reason);
+            })
+          }
+        };
+        try {
+          exector(resolve, reject);
+        } catch (error) {
+          reject(error);
+        }
+
+      }
+      then(onFulFilled, onRejected) {
+        // console.log(this.state)
+        let promise = new Promise1((resolve, reject) => {
+          if (this.state === FULFILLED) {
+           
+            onFulFilled(this.result);
+          } else if (this.state === REJECTED) {
+            onRejected(this.reason);
+          } else if (this.state === PENDING) {
+            typeof onFulFilled === "function" && this.onFulFilledCallBacks.push({ onFulFilled, resolve, reject });
+            typeof onRejected === "function" && this.onRejectedCallBacks.push({ onRejected, reject, resolve });
+          }
+        });
+
+        return promise;
+      }
+    }
+    const p = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(3);
+      }, 1000)
+    })
+    p.then(res => {
+      // console.log(res)
+    })
+
+    const p2 = new Promise1((resolve, reject) => {
+      setTimeout(() => {
+        resolve(4);
+      }, 1000)
+    })
+    const p22 = p2.then(res => {
+      console.log(res)
+      return new Promise1((res1, rej) => {
+        setTimeout(() => {
+          res1(25)
+        }, 1000)
+      })
+    }, (err) => { console.log(err) })
+
+    p22.then(res => {
+      console.log(res)
+      return 33;
+    }, (err) => { console.log(err) })
+      .then((res) => {
+        console.log(res)
+        return new Promise1((res) => {
+          setTimeout(() => { res(55) }, 1000)
+        })
+      })
+      .then(res => {
+        console.log(res)
+      })
+  </script>
+</body>
+
+</html>
