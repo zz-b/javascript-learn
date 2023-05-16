@@ -10,17 +10,24 @@
 
 <body>
   <script>
-    Promise.myRace = function (promises) {
-      function helper(data, resolve) {
-        resolve(data)
+    Promise.myAll = function (promises) {
+      var res = [],
+        i = 0;
+      function helper(index, data, resolve) {
+        res[index] = data;
+        i++;
+        if (i === promises.length) {
+          resolve(res);
+        }
       }
       return new Promise((resolve, reject) => {
-        for (let i = 0; i < promises.length; i++) {
+        for (let i = 0; i < promises.length; i++) {//这里的let不能换成var
           promises[i].then((data) => {
-            helper(data, resolve);
+            helper(i, data, resolve);
           })
         }
       })
+
     }
     const p1 = new Promise((resolve) => {
       setTimeout(() => {
@@ -31,7 +38,7 @@
       setTimeout(() => {
         resolve("p2")
         // reject("pp2")
-      }, 20)
+      }, 2000)
     })
     const p3 = new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -39,7 +46,7 @@
         // reject("pp3")
       }, 300)
     })
-    Promise.myRace([p1, p2, p3])
+    Promise.myAll([p1, p2, p3])
       .then(res => {
         console.log("success:", res)
       }, (error) => { "error:", console.log(error) })
