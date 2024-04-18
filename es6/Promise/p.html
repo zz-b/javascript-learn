@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const PENDING = "pending";
+    const FULFILLED = "fulfilled";
+    const REJECTED = "rejected";
+    class Promise1 {
+      reslut = undefined;
+      reason = undefined;
+      state = PENDING;
+
+      constructor(exector) {
+        this.onFulFilledCbs = [];
+        this.onRejectedCbs = [];
+        var resolve = function (data) {
+          if (this.state === PENDING) {
+            this.reslut = data;
+            this.state = FULFILLED;
+            this.onFulFilledCbs.forEach(({onFulFilled,resolve,reject}) => {
+              let x = onFulFilled(this.reslut);
+              if(x instanceof Promise1){
+                x.then(resolve,reject)
+              }else{
+                resolve(x);
+              }
+            });
+          }
+        }.bind(this)
+        var reject = function (reason) {
+          if (this.state === PENDING) {
+            this.state = REJECTED;
+            this.reason = reason;
+          }
+        }.bind(this)
+        
+        try {
+          exector(resolve, reject);
+        } catch (error) {
+          reject(error);
+        }
+      }
+      then(onFulFilled, onRejected) {
+        return new Promise1((resolve, reject) => {
+          if (this.state === PENDING){
+            this.onFulFilledCbs.push({onFulFilled,onRejected,reject,resolve});
+            this.onRejectedCbs.push({onFulFilled,onRejected,reject,resolve});
+          } 
+          if(this.state===FULFILLED){
+            onFulFilled(this.reslut);
+          }
+          if(this.state===REJECTED){
+            onRejected(this.reason);
+          }
+
+        })
+      }
+      // static race(promises){
+      //   return new Promise1((resolve,reject)=>{
+      //     for(let i =0 ;i<promises.length;i++){
+      //       promises[i].then(resolve,reject);
+      //     }
+      //   })
+      // }
+      static race(promises){
+        function helper(resolve,data){
+          resolve(data)
+        }
+        return new Promise1((resolve,reject)=>{
+          for(let i =0 ;i<promises.length;i++){
+            promises[i].then((data)=>{
+              helper(resolve,data);
+            });
+          }
+        })
+      }
+    }
+    new Promise1((resolve,reject)=>{
+      setTimeout(()=>{resolve(1)},1000)
+    })
+    .then(res=>{
+      console.log(res)
+      return new Promise1((resolve,reject)=>{
+        setTimeout(()=>{resolve(2)},1000)
+      })
+    })
+    .then(res=>{
+      console.log(res)
+      return 3
+    })
+    .then(res=>{
+      console.log(res)
+    })
+    let p1 = new Promise1((res)=>{
+      setTimeout(()=>{res(1)},1000)
+    })
+    let p2 = new Promise1((res)=>{
+      setTimeout(()=>{res(2)},100)
+    })
+    Promise1.race([p1,p2])
+    .then(res=>{
+      console.log("rece：",res)
+    })
+  </script>
+</body>
+
+</html>

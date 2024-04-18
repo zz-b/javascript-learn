@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var arr = [1, 2,3, 4,5];
+    let res = arr.reduce((res,item)=>res+item,0);
+    var arr2 = [{score:90,num:1,name:'zb'},{score:100,num:1,name:'zb'},{score:88,num:1,name:'zb'}];
+    // let res2 = arr2.reduce((res,item)=>res+item.score)
+    let res2 = arr2.reduce((res,item)=>{
+      console.log(res,item)
+      return item.score + res;
+    },0)
+    // console.log(res2)
+    Array.prototype.myReduce = function(cb,initial){
+
+      // console.log(this);  
+      var res = initial;
+      for(let i = 0;i<this.length;i++){
+        res = cb(res,this[i]);
+      }
+      return res;
+    }
+    let res3 = arr.myReduce((res,item)=>res+item,0);
+    let res4 = arr2.myReduce((res,item)=>res+item.score,0);
+    Array.prototype.myReduce2 = function(cb,initial){
+      var res,
+          i;
+      if(initial !== undefined){
+        res = initial;
+        i= 0;
+      }else{
+        res = this[0];
+        i = 1;
+      }
+      for(let index = i;index<this.length;index++){
+        res = cb(res,this[index]);
+      }
+      return res;
+    }
+    let res5 = arr2.myReduce2((res,item)=>res+item.score);
+  </script>
+</body>
+</html>

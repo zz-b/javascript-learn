@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function fn(str1, str2){
+      let length = Math.min(str1.length, str2.length);
+      let prefix = ""
+      let index = 0;
+      while (index < length) {
+        if(str1[index] === str2[index]){
+          index ++;
+        }else{
+          break;
+        }
+      
+      }
+      return str1.substring(0,index)
+    }
+    let str= fn("aa2ab","aaaaafff")
+    console.log(str)
+    function fn2(str1, str2){
+      let length = Math.min(str1.length, str2.length);
+      let l =0,r=1;
+      let prefix = ""
+      let index = 0;
+      while (index < length) {
+        if(str1[index] === str2[index]){
+          index ++;
+        }else{
+          break;
+        }
+      
+      }
+      return str1.substring(0,index)
+    }
+    let str2= fn2("aa2ab","aaaaafff")
+    console.log(str2)
+  </script>
+</body>
+</html>
